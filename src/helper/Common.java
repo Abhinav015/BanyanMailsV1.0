@@ -13,6 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -112,17 +113,17 @@ public class Common {
                     }
 
                     BanyanAppBean tempBean = new BanyanAppBean();
-
+                    row.getCell(1).setCellType(Cell.CELL_TYPE_STRING);
                     tempBean.setSlNo(row.getCell(0).toString().trim());
-                    tempBean.setId(row.getCell(1).toString().trim());
+                    tempBean.setId(String.valueOf(row.getCell(1)));
                     tempBean.setName(row.getCell(2).toString().trim());
                     tempBean.setFieldManager(row.getCell(3).toString().trim());
                     tempBean.setSalutation(row.getCell(4).toString().trim());
                     tempBean.setEmail(row.getCell(5).toString().trim());
                     tempBean.setMobNo((long)row.getCell(6).getNumericCellValue());
-                    
                     tempBean.setChk(Boolean.TRUE);
-                    data.add(row.getCell(1).toString().trim());
+                    
+                    data.add(String.valueOf(row.getCell(1)));
                     data.add(row.getCell(2).toString().trim());
                     data.add(row.getCell(5).toString().trim());
                     data.add(tempBean.getChk());

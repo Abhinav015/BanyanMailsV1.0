@@ -30,15 +30,14 @@ public class MyTableModel extends AbstractTableModel {
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        if (columnIndex == 3) {
+        if(columnIndex == 3) {
             data[rowIndex][columnIndex] = aValue;
-
             fireTableCellUpdated(rowIndex, columnIndex);
         }
     }
 
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        if (columnIndex == 3) {
+        if(columnIndex == 3) {
             return true;
         } else {
             return false;
