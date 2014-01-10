@@ -17,9 +17,6 @@ public class Logger {
             }
 
             FileWriter fileWritter = new FileWriter(file.getName(), true);
-//            BufferedWriter bufferWritter = new BufferedWriter(fileWritter);
-//                bufferWritter.write(data);
-//                bufferWritter.newLine();
             PrintWriter pw = new PrintWriter(fileWritter);
             pw.println(data);
             pw.flush();
@@ -52,9 +49,8 @@ public class Logger {
         }
 
     }
-  
-    
-    public void errorLogger(Exception ex){
+
+    public void errorLogger(Exception ex) {
         try {
             String data = ex.getMessage();
             File file = new File("BanyanMailError.log");
@@ -63,7 +59,7 @@ public class Logger {
                 file.createNewFile();
             }
 
-            FileWriter fileWritter = new FileWriter(file.getName(),true);
+            FileWriter fileWritter = new FileWriter(file.getName(), true);
             try (BufferedWriter bufferWritter = new BufferedWriter(fileWritter)) {
                 bufferWritter.write(data);
                 bufferWritter.newLine();

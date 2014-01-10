@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package helper;
 
 import java.io.FileInputStream;
@@ -19,10 +15,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-/**
- *
- * @author pratikmac
- */
+
 public class Common {
 
     private static String GetFileExtension(String fname2) {
@@ -76,12 +69,12 @@ public class Common {
                     } else if (!row22.getCell(4).toString().equals("Salutation")) {
                         System.out.println("Salutation");
                         checkHearderName = false;
-                    }else if (!row22.getCell(5).toString().equals("EMail")) {
+                    } else if (!row22.getCell(5).toString().equals("EMail")) {
                         System.out.println("EMail");
                         checkHearderName = false;
                     } else if (!row22.getCell(6).toString().trim().equals("MobileNo")) {
-                         System.out.println("MobileNo");
-                         checkHearderName = false;
+                        System.out.println("MobileNo");
+                        checkHearderName = false;
                     } else if (row22.getCell(7) != null) {
                         checkHearderName = false;
                         System.out.println("extra row" + row22.getCell(7));
@@ -120,9 +113,9 @@ public class Common {
                     tempBean.setFieldManager(row.getCell(3).toString().trim());
                     tempBean.setSalutation(row.getCell(4).toString().trim());
                     tempBean.setEmail(row.getCell(5).toString().trim());
-                    tempBean.setMobNo((long)row.getCell(6).getNumericCellValue());
+                    tempBean.setMobNo((long) row.getCell(6).getNumericCellValue());
                     tempBean.setChk(Boolean.TRUE);
-                    
+
                     data.add(String.valueOf(row.getCell(1)));
                     data.add(row.getCell(2).toString().trim());
                     data.add(row.getCell(5).toString().trim());

@@ -135,8 +135,8 @@ public class SendMailApp extends JFrame implements ActionListener, Runnable {
                     || tasign2.getText().equals("") || tasign2.getText() == null) {
                 JOptionPane.showMessageDialog(null, "All fields are mandatory. Please provide required information!");
             } else {
-                    load = new Thread(this);
-                    load.start();
+                load = new Thread(this);
+                load.start();
             }
         }
 
@@ -186,21 +186,21 @@ public class SendMailApp extends JFrame implements ActionListener, Runnable {
                         String recipients[] = new String[1];
                         recipients[0] = emailId;
                         name = banApp.getName();
-                        lblstatus.setText("Sending mail to "+name);
-                        String sign = "<font face='Calibri' size='10px' color='#008000'><b>" + tasign1.getText() + "</b></font>" + "<br><font face='Calibri' size='10px'>Bangalore, India.<br>M : +91-"+banApp.getMobNo()+" </font><br>" + "<a href='www.banyantreeadvisors.com'><font face='Calibri' size='10px' color='#008000'>www.banyantreeadvisors.com</font></a>";
+                        lblstatus.setText("Sending mail to " + name);
+                        String sign = "<font face='Calibri' size='10px' color='#008000'><b>" + tasign1.getText() + "</b></font>" + "<br><font face='Calibri' size='10px'>Bangalore, India.<br>M : +91-" + banApp.getMobNo() + " </font><br>" + "<a href='www.banyantreeadvisors.com'><font face='Calibri' size='10px' color='#008000'>www.banyantreeadvisors.com</font></a>";
                         String[] attachmentFile = getAttachments(getAttchmentFolder(), name);
                         SendMailAPI mailApi = new SendMailAPI();
                         try {
                             mailApi.postMail(recipients,
                                     tfsub.getText(), tabody.getText(), tfuname.getText(), tfpname.getText(), attachmentFile, sign, banApp.getFieldManager(), salutation);
-                            pb.setValue(i+1);
-                            lblstatus.setText("Mail sent to "+name);
+                            pb.setValue(i + 1);
+                            lblstatus.setText("Mail sent to " + name);
                             try {
                                 Thread.sleep(10);
                             } catch (InterruptedException ex) {
                                 java.util.logging.Logger.getLogger(SendMailApp.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                            data =  "# [SENT] "+new Date()+"  Id-"+banApp.getId()+"    Name-"+ name + "       Email-" + emailId;
+                            data = "# [SENT] " + new Date() + "  Id-" + banApp.getId() + "    Name-" + name + "       Email-" + emailId;
                             try {
                                 Thread.sleep(15);
                             } catch (InterruptedException ex) {
@@ -210,9 +210,9 @@ public class SendMailApp extends JFrame implements ActionListener, Runnable {
 
                         } catch (MessagingException messagingException) {
                             flag++;
-                             log.errorLogger(messagingException);
-                            lblstatus.setText("Mail sending failed to "+name);
-                            data = "# [FAILED] "+new Date()+"  Id-"+banApp.getId()+"    Name-"+ name + "       Email-" + emailId;
+                            log.errorLogger(messagingException);
+                            lblstatus.setText("Mail sending failed to " + name);
+                            data = "# [FAILED] " + new Date() + "  Id-" + banApp.getId() + "    Name-" + name + "       Email-" + emailId;
                             log.appendToFile(data);
                         }
                     }
@@ -222,14 +222,14 @@ public class SendMailApp extends JFrame implements ActionListener, Runnable {
                 }
                 JOptionPane.showMessageDialog(null, "Processing completed.");
                 lblstatus.setText("Sucessfully Sent mail to All Users");
-                
+
                 load.suspend();
             } catch (IndexOutOfBoundsException ex) {
                 JOptionPane.showMessageDialog(null, "Processing completed.");
                 log.errorLogger(ex);
             }
         } catch (IOException ex) {
-             log.errorLogger(ex);
+            log.errorLogger(ex);
         }
     }
 

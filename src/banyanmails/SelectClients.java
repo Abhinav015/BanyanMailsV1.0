@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package banyanmails;
 
 import helper.BanyanAppBean;
@@ -17,8 +13,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -37,63 +31,53 @@ public class SelectClients extends JFrame implements ActionListener {
         super(str);
     }
 
-    public void init() {
+    public void init() throws IOException {
 
-        try {
-            String[] colHeads = {"ID", "Name", "EMail", "Checkbox"};
-            HashMap hm;
-            try {
-                hm = cmn.getImportExcelData(getFilePathName());
-                int cols = 4;
-                ArrayList<BanyanAppBean> ls = (ArrayList) hm.get("list");
-                int noRec = ls.size();
-                List data = (ArrayList) hm.get("data");
-                Iterator itr = data.iterator();
-                Object[][] tableData = new Object[noRec][cols];
-                int i = 0;
-                while (itr.hasNext()) {
-                    for (int j = 1; j <= cols; j++) {
-                        tableData[i][j - 1] = itr.next();
-                    }
-                    i++;
-                }
-                b1 = new JButton("Select All");
-                b2 = new JButton("Clear All");
-                b3 = new JButton("Ok");
-                b4 = new JButton("Cancel");
-
-                b1.setBounds(40, 270, 100, 27);
-                b2.setBounds(180, 270, 100, 27);
-                b3.setBounds(320, 270, 100, 27);
-                b4.setBounds(460, 270, 100, 27);
-
-                model = new MyTableModel(tableData, colHeads);
-                table = new JTable(model);
-                JScrollPane tableScroller = new JScrollPane(table);
-                tableScroller.setBounds(2, 10, 593, 250);
-                Container cp = getContentPane();
-                cp.add(tableScroller);
-                cp.add(b1);
-                cp.add(b2);
-                cp.add(b3);
-                cp.add(b4);
-
-                b1.addActionListener(this);
-                b2.addActionListener(this);
-                b3.addActionListener(this);
-                b4.addActionListener(this);
-                addWindowListener(new MyWindowAdapter1(this));
-                setLayout(null);
-
-                table.setRowHeight(22);
-
-            } catch (IOException ex) {
-                Logger.getLogger(SelectClients.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println("Exception in select clients");
+        String[] colHeads = {"ID", "Name", "EMail", "Checkbox"};
+        HashMap hm;
+        hm = cmn.getImportExcelData(getFilePathName());
+        int cols = 4;
+        ArrayList<BanyanAppBean> ls = (ArrayList) hm.get("list");
+        int noRec = ls.size();
+        List data = (ArrayList) hm.get("data");
+        Iterator itr = data.iterator();
+        Object[][] tableData = new Object[noRec][cols];
+        int i = 0;
+        while (itr.hasNext()) {
+            for (int j = 1; j <= cols; j++) {
+                tableData[i][j - 1] = itr.next();
             }
-        } catch (Exception ex) {
-            System.out.println("Exception in select clients");
+            i++;
         }
+        b1 = new JButton("Select All");
+        b2 = new JButton("Clear All");
+        b3 = new JButton("Ok");
+        b4 = new JButton("Cancel");
+
+        b1.setBounds(40, 270, 100, 27);
+        b2.setBounds(180, 270, 100, 27);
+        b3.setBounds(320, 270, 100, 27);
+        b4.setBounds(460, 270, 100, 27);
+
+        model = new MyTableModel(tableData, colHeads);
+        table = new JTable(model);
+        JScrollPane tableScroller = new JScrollPane(table);
+        tableScroller.setBounds(2, 10, 593, 250);
+        Container cp = getContentPane();
+        cp.add(tableScroller);
+        cp.add(b1);
+        cp.add(b2);
+        cp.add(b3);
+        cp.add(b4);
+
+        b1.addActionListener(this);
+        b2.addActionListener(this);
+        b3.addActionListener(this);
+        b4.addActionListener(this);
+        addWindowListener(new MyWindowAdapter1(this));
+        setLayout(null);
+
+        table.setRowHeight(22);
     }
 
     @Override
@@ -118,6 +102,7 @@ public class SelectClients extends JFrame implements ActionListener {
             BanyanMailApp frm1 = new BanyanMailApp("Banyan Mail Application");
             frm1.setModel(model);
             frm1.setData(filePathName, attachFolder);
+            frm1.setIconImage(new javax.swing.ImageIcon("mail.png").getImage());
             frm1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frm1.setResizable(false);
             frm1.setLocation(350, 200);
@@ -127,8 +112,8 @@ public class SelectClients extends JFrame implements ActionListener {
         }
 
         if (e.getActionCommand().equals("Cancel")) {
-                 this.setVisible(false);
-                 BanyanMails.frmShow(this);
+            this.setVisible(false);
+            BanyanMails.frmShow(this);
         }
     }
 
@@ -147,7 +132,7 @@ public class SelectClients extends JFrame implements ActionListener {
     public void setAttachFolder(String attachFolder) {
         this.attachFolder = attachFolder;
     }
-    
+
     class MyWindowAdapter1 extends WindowAdapter {
 
         SelectClients sc = null;
@@ -161,5 +146,5 @@ public class SelectClients extends JFrame implements ActionListener {
             BanyanMails.frmShow(sc);
         }
     }
-   
+
 }
