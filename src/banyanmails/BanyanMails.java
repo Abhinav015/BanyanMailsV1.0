@@ -9,7 +9,7 @@ public class BanyanMails extends WindowAdapter {
     public static void main(String[] args) {
         frmShow();
     }
-
+    
     public static JFrame frmShow() {
         JFrame.setDefaultLookAndFeelDecorated(true);
         try {

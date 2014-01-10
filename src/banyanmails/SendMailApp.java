@@ -145,10 +145,15 @@ public class SendMailApp extends JFrame implements ActionListener, Runnable {
         }
     }
 
-    public String[] getAttachments(String attachmentPath, String name) {
-        Calendar cal = Calendar.getInstance();
+    public String[] getAttachments(String attachmentPath, String name,String Id) {
         File dir = new File(attachmentPath);
-        FileFilter fileFilter = new WildcardFileFilter(name + "*.pdf");
+        String fileName="";
+        if(Id.equals("-")){
+             fileName="Banyan Tree";
+        }else{
+             fileName=name;
+        }
+        FileFilter fileFilter = new WildcardFileFilter(fileName + "*.pdf");
         File[] files = dir.listFiles(fileFilter);
         String[] attacFiles = new String[files.length];
         if (files.length == 0) {
@@ -188,7 +193,7 @@ public class SendMailApp extends JFrame implements ActionListener, Runnable {
                         name = banApp.getName();
                         lblstatus.setText("Sending mail to " + name);
                         String sign = "<font face='Calibri' size='10px' color='#008000'><b>" + tasign1.getText() + "</b></font>" + "<br><font face='Calibri' size='10px'>Bangalore, India.<br>M : +91-" + banApp.getMobNo() + " </font><br>" + "<a href='www.banyantreeadvisors.com'><font face='Calibri' size='10px' color='#008000'>www.banyantreeadvisors.com</font></a>";
-                        String[] attachmentFile = getAttachments(getAttchmentFolder(), name);
+                        String[] attachmentFile = getAttachments(getAttchmentFolder(), name,banApp.getId());
                         SendMailAPI mailApi = new SendMailAPI();
                         try {
                             mailApi.postMail(recipients,
@@ -221,8 +226,7 @@ public class SendMailApp extends JFrame implements ActionListener, Runnable {
                     JOptionPane.showMessageDialog(null, "Authentication failed. Please enter correct username and password.");
                 }
                 JOptionPane.showMessageDialog(null, "Processing completed.");
-                lblstatus.setText("Sucessfully Sent mail to All Users");
-
+                lblstatus.setText("Sucessfully Sent mail to All Clients");
                 load.suspend();
             } catch (IndexOutOfBoundsException ex) {
                 JOptionPane.showMessageDialog(null, "Processing completed.");

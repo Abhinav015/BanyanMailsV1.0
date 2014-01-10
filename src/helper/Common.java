@@ -15,7 +15,6 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-
 public class Common {
 
     private static String GetFileExtension(String fname2) {
@@ -104,11 +103,17 @@ public class Common {
                     if (row.getRowNum() == 0 || !isRowValid) {
                         continue;
                     }
-
+                    String Id = "";
                     BanyanAppBean tempBean = new BanyanAppBean();
-                    row.getCell(1).setCellType(Cell.CELL_TYPE_STRING);
                     tempBean.setSlNo(row.getCell(0).toString().trim());
-                    tempBean.setId(String.valueOf(row.getCell(1)));
+                    if (row.getCell(1) == null) {
+                        Id = "-";
+                    } else {
+                        row.getCell(1).setCellType(Cell.CELL_TYPE_STRING);
+                        Id = row.getCell(1).toString().trim();
+                    }
+
+                    tempBean.setId(String.valueOf(Id));
                     tempBean.setName(row.getCell(2).toString().trim());
                     tempBean.setFieldManager(row.getCell(3).toString().trim());
                     tempBean.setSalutation(row.getCell(4).toString().trim());
@@ -116,7 +121,7 @@ public class Common {
                     tempBean.setMobNo((long) row.getCell(6).getNumericCellValue());
                     tempBean.setChk(Boolean.TRUE);
 
-                    data.add(String.valueOf(row.getCell(1)));
+                    data.add(String.valueOf(Id));
                     data.add(row.getCell(2).toString().trim());
                     data.add(row.getCell(5).toString().trim());
                     data.add(tempBean.getChk());
@@ -130,7 +135,6 @@ public class Common {
 
         } catch (Exception ee) {
             System.out.println("Exception in getImportExcelData() in while-" + ee);
-            ee.printStackTrace();
         } finally {
             file.close();
         }

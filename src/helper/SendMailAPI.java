@@ -56,7 +56,7 @@ public class SendMailAPI {
         msg.setRecipients(Message.RecipientType.TO, addressTo);
 
         // Setting the Subject and Content Type
-        message = "<font face='Calibri' size='10px'>" + salutation + ", <br><br>" + message + "<br><br><br>Regards<br><br>" + manager + "<br>" + "<br></font>";
+        message = "<font face='Calibri' size='10px'>" + salutation + ", <br><br>" + message + "<br><br>Regards<br><br>" + manager + "<br></font>";
         String details = sign;
         message = message + details;
         msg.setSubject(subject);

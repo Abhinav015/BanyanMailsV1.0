@@ -63,6 +63,7 @@ public class DatePicker {
         d.add(p1, BorderLayout.CENTER);
         d.add(p2, BorderLayout.SOUTH);
         d.pack();
+        d.setIconImage(new javax.swing.ImageIcon("mail.png").getImage());
         d.setLocationRelativeTo(parent);
         displayDate();
         d.setVisible(true);
