@@ -4,6 +4,7 @@ import helper.BanyanAppBean;
 import helper.Common;
 import helper.MyTableModel;
 import helper.SendMailAPI;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +14,6 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -64,12 +64,22 @@ public class SendMailApp extends JFrame implements ActionListener, Runnable {
         lblstatus = new JLabel("Status", JLabel.LEFT);
 
         tfsub = new JTextField(40);
+        tfsub.setBackground(Color.decode("#FFFFE0"));
         tfuname = new JTextField(40);
+        tfuname.setBackground(Color.decode("#FFFFE0"));
         tfpname = new JPasswordField(40);
+        tfpname.setBackground(Color.decode("#FFFFE0"));
         email = new JButton("Email", mail);
+        
         tabody = new JTextArea(40, 60);
+        tabody.setBackground(Color.decode("#FFFFE0"));
+        tabody.setLineWrap(true);
+        tabody.setWrapStyleWord(true);
+
         tasign1 = new JTextField(40);
+        tasign1.setBackground(Color.decode("#FFFFE0"));
         tasign2 = new JTextArea(10, 30);
+        tasign2.setBackground(Color.decode("#FFFFE0"));
 
         pb = new JProgressBar();
         pb.setValue(0);
@@ -226,7 +236,7 @@ public class SendMailApp extends JFrame implements ActionListener, Runnable {
                     JOptionPane.showMessageDialog(null, "Authentication failed. Please enter correct username and password.");
                 }
                 JOptionPane.showMessageDialog(null, "Processing completed.");
-                lblstatus.setText("Sucessfully Sent mail to All Clients");
+                lblstatus.setText("Sucessfully  mail sent to all client(s)");
                 load.suspend();
             } catch (IndexOutOfBoundsException ex) {
                 JOptionPane.showMessageDialog(null, "Processing completed.");

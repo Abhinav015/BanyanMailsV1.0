@@ -20,8 +20,6 @@ import javax.mail.internet.MimeMultipart;
 
 public class SendMailAPI {
 
-    private int result;
-
     public SendMailAPI() {
     }
     private String HOST_NAME = "smtp.mail.yahoo.com";
@@ -56,7 +54,7 @@ public class SendMailAPI {
         msg.setRecipients(Message.RecipientType.TO, addressTo);
 
         // Setting the Subject and Content Type
-        message = "<font face='Calibri' size='10px'>" + salutation + ", <br><br>" + message + "<br><br>Regards<br><br>" + manager + "<br></font>";
+        message = "<font face='Calibri' size='10px'>" + salutation + ", <br><br>" + message + "<br><br>Regards<br>" + manager + "<br><br></font>";
         String details = sign;
         message = message + details;
         msg.setSubject(subject);

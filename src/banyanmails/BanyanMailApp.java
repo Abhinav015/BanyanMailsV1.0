@@ -2,6 +2,7 @@ package banyanmails;
 
 import helper.MyTableModel;
 import helper.DatePicker;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,9 +36,12 @@ public class BanyanMailApp extends JFrame implements ActionListener {
         l1 = new JLabel("Attachments Folder Path", attach, JLabel.LEFT);
         l2 = new JLabel(" Select Client File", xls, JLabel.LEFT);
         l3 = new JLabel("Date of Report", JLabel.LEFT);
-
+        
         tf1 = new JTextField(40);
+        tf1.setBackground(Color.decode("#FFFFE0"));
         tf2 = new JTextField(40);
+        tf2.setBackground(Color.decode("#FFFFE0"));
+        
         b1 = new JButton("Send");
         b2 = new JButton("...");
         b3 = new JButton("...");
@@ -46,6 +50,7 @@ public class BanyanMailApp extends JFrame implements ActionListener {
 
         jlabel = new JLabel("Report Date ");
         jdate = new JTextField(40);
+        jdate.setBackground(Color.decode("#FFFFE0"));
         jbutton = new JButton(dt);
 
         l1.setBounds(10, 50, 180, 30);
